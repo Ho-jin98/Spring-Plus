@@ -16,6 +16,10 @@ import java.security.Key;
 import java.util.Base64;
 import java.util.Date;
 
+/* JwtUtil은 JWT의 관련 모든 기능을 담당하는 유틸 클래스인데,
+ 주요 역할은 토큰 생성, 토큰 검증, 토큰에서 정보 추출 이렇게 세 가지 이다.*/
+
+
 @Slf4j(topic = "JwtUtil")
 @Component
 public class JwtUtil {
@@ -34,13 +38,17 @@ public class JwtUtil {
         key = Keys.hmacShaKeyFor(bytes);
     }
 
-    public String createToken(Long userId, String email, UserRole userRole) {
+    // 토큰 생성 파라미터에 nickname 추가
+    public String createToken(Long userId, String email, String nickname, UserRole userRole) {
         Date date = new Date();
 
         return BEARER_PREFIX +
                 Jwts.builder()
                         .setSubject(String.valueOf(userId))
                         .claim("email", email)
+                        /* 프론트엔드 개발자가 JWT에서 유저의 닉네임을 꺼내 화면에 보여주고 싶다
+                         -> 페이로드에 들어가는 claim값에 nickname 추가 */
+                        .claim("nickname", nickname)
                         .claim("userRole", userRole)
                         .setExpiration(new Date(date.getTime() + TOKEN_TIME))
                         .setIssuedAt(date) // 발급일

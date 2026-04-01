@@ -15,6 +15,9 @@ public class SignupRequest {
     private String email;
     @NotBlank
     private String password;
+    // 회원가입 요청 dto에 nickname 추가
+    @NotBlank
+    private String nickname;
     @NotBlank
     private String userRole;
 }

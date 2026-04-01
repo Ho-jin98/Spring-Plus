@@ -38,11 +38,13 @@ public class AuthService {
         User newUser = new User(
                 signupRequest.getEmail(),
                 encodedPassword,
+                signupRequest.getNickname(),
                 userRole
         );
         User savedUser = userRepository.save(newUser);
 
-        String bearerToken = jwtUtil.createToken(savedUser.getId(), savedUser.getEmail(), userRole);
+        // createToken에 user에 있는 nickname필드 넘김
+        String bearerToken = jwtUtil.createToken(savedUser.getId(), savedUser.getEmail(),savedUser.getNickname(), userRole);
 
         return new SignupResponse(bearerToken);
     }
@@ -56,8 +58,19 @@ public class AuthService {
             throw new AuthException("잘못된 비밀번호입니다.");
         }
 
-        String bearerToken = jwtUtil.createToken(user.getId(), user.getEmail(), user.getUserRole());
+        // createToken에 user에 있는 nickname필드 넘김
+        String bearerToken = jwtUtil.createToken(user.getId(), user.getEmail(), user.getNickname(), user.getUserRole());
+
+        /* createToken에 user.getNickname()으로 nickname을 넘겨주는데 로그인할 때 nickname이 없어도 괜찮은 이유
+         1. User엔티티에 로그인할 때 사용되는 생성자에는 nickname 필드 추가를 안해서 관계가 없음
+         2. 로그인시 findByEmail로 DB에 직접 조회를 하는데, 이 때 nickname도 같이 가져와서 문제없음*/
 
         return new SigninResponse(bearerToken);
     }
 }
+
+/* JWT 구조
+
+Header : 알고리즘, 토큰 타입
+Payload : claim 값들 (userId, email, nickname, userRole 등)
+Signature : 서명 */
