@@ -38,3 +38,6 @@ out/
 
 ### properties ###
 *.properties
+
+# application-secret.yml 추가
+application-secret.yml

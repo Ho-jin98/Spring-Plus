@@ -1,0 +1,22 @@
+spring:
+  profiles:
+    active: local
+    include: secret
+  application:
+    name: spring-plus
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        show_sql: true
+        format_sql: true
+    open-in-view: false
+
+logging:
+  level:
+    root: info
+
+server:
+  port: 8080
