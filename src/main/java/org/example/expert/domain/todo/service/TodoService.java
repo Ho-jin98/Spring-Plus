@@ -7,6 +7,7 @@ import org.example.expert.domain.common.exception.InvalidRequestException;
 import org.example.expert.domain.todo.dto.request.TodoSaveRequest;
 import org.example.expert.domain.todo.dto.response.TodoResponse;
 import org.example.expert.domain.todo.dto.response.TodoSaveResponse;
+import org.example.expert.domain.todo.dto.response.TodoSearchResponse;
 import org.example.expert.domain.todo.entity.Todo;
 import org.example.expert.domain.todo.repository.TodoRepository;
 import org.example.expert.domain.user.dto.response.UserResponse;
@@ -63,7 +64,7 @@ public class TodoService {
             todos = todoRepository.findByWeather(weather, PageRequest.of(page, size));
         }
         // weather도 있고, date도 둘 다 있을 때
-        if (weather !=null && startDate != null && endDate != null) {
+        if (weather != null && startDate != null && endDate != null) {
             todos = todoRepository.findByWeatherAndDate(weather, startDate, endDate, PageRequest.of(page, size));
         }
         // weather도 null, date도 전부 null
@@ -98,4 +99,13 @@ public class TodoService {
                 todo.getModifiedAt()
         );
     }
+
+    public Page<TodoSearchResponse> searchTodos(
+            String title, String nickname, LocalDateTime startDate, LocalDateTime endDate, Pageable pageable) {
+
+        return todoRepository.searchTodos(title, nickname, startDate, endDate, pageable);
+    }
+    /* QueryDSL에서 BooleanExpression을 활용했으므로, null이 발생하면 자동으로 조건에서 제외시켜주기 때문에,
+       서비스코드에 if문으로 분기를 나눠줄 필요가 없음!
+       반면, BooleanBuilder는 직접 조건을 추가하고 관리해야되서 코드가 복잡해질 수 있다.*/
 }
