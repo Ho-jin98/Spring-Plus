@@ -44,6 +44,10 @@ dependencies {
     // Spring Security 의존성 추가
     implementation 'org.springframework.boot:spring-boot-starter-security'
 
+    // Redis 의존성 추가
+    implementation 'org.springframework.boot:spring-boot-starter-data-redis'
+    implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310'
+
     // bcrypt
     implementation 'at.favre.lib:bcrypt:0.10.2'
 
