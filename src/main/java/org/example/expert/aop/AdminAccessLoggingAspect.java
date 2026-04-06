@@ -20,7 +20,7 @@ public class AdminAccessLoggingAspect {
     private final HttpServletRequest request;
     // AOP가 UserController에 걸려있으므로, UserController의 API로 테스트 진행,
 
-    @Before("execution(* org.example.expert.domain.user.controller.UserController.getUser(..))")
+    @Before("execution(* org.example.expert.domain.user.controller.UserAdminController.changeUserRole(..))")
     public void logAfterChangeUserRole(JoinPoint joinPoint) {
         String userId = String.valueOf(request.getAttribute("userId"));
         String requestUrl = request.getRequestURI();
