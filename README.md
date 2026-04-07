@@ -107,7 +107,9 @@ Connection is read-only. Queries leading to data modification are not allowed
 #### 테스트 결과
 
 > <div align="center">
+>
 > <h4>📸Jwt Payload nickname값 확인</h4>
+> 
 > <img src="./images/jwt%20페이로드%20nickname.png" width="400"/>
 > </div>
 > 
@@ -433,7 +435,9 @@ public void savedLog(String message, boolean isSuccess) {
 #### 테스트 결과
 
 > <div align="center">
+>
 > <h4>📸log테이블 매니저 등록 실패 기록</h4>
+>
 > <img src="./images/Log%20테스트.png" width="400"/>
 > </div>
 
@@ -478,7 +482,9 @@ jdbc:mysql://localhost:3306/spring_plus?rewriteBatchedStatements=true
 ```
 
 > <div align="center">
+>
 > <h4>📸User500만 건 데이터 생성</h4>
+>
 > <img src="./images/User500만건%20데이터%20생성.png" width="400"/>
 > </div>
 
