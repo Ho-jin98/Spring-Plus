@@ -57,8 +57,6 @@ Connection is read-only. Queries leading to data modification are not allowed
 
 `saveTodo()` 메서드 레벨에 `@Transactional` 을 별도로 선언하여 쓰기 트랜잭션으로 전환.
 
-#### 테스트 결과
-
 | 구분 | 결과 |
 |------|------|
 | 수정 전 | 500 에러 발생 |
@@ -103,8 +101,6 @@ Connection is read-only. Queries leading to data modification are not allowed
 #### Q. 로그인용 생성자에 nickname을 추가하지 않았는데 왜 정상 동작할까?
 
 `findByEmail()` 로 DB에서 `User` 전체를 조회하기 때문에 `nickname` 포함 모든 필드가 이미 담겨있어 문제없음.
-
-#### 테스트 결과
 
 > <div align="center">
 >
@@ -197,8 +193,6 @@ Connection is read-only. Queries leading to data modification are not allowed
 
 `@After` → `@Before` 로 변경.
 
-#### 테스트 결과
-
 
 > <div align="center">
 >
@@ -274,7 +268,6 @@ List<Comment> findByTodoIdWithUser(@Param("todoId") Long todoId);
 | `@BatchSize` | 🔺 부분 | ❌ | ✅ |
 | `QueryDSL` | ✅ 완전 | ✅ | ✅ |
 
-#### 테스트 결과
 
 > <div align="center">
 >
@@ -432,7 +425,6 @@ public void savedLog(String message, boolean isSuccess) {
 
 예외를 잡고 로그를 남긴 뒤, `throw e` 를 하지 않으면 Spring이 에러가 해결된 것으로 착각해 메인 트랜잭션을 롤백하지 않고 커밋할 수 있음.
 
-#### 테스트 결과
 
 > <div align="center">
 >
@@ -526,9 +518,10 @@ CREATE INDEX idx_nickname ON users (nickname);
 
 > `EXPLAIN` 으로 옵티마이저 전략 확인 시 인덱스 추가 후 `ref` + `idx_nickname` 사용 확인.
 
-> 📸 **(캡처 첨부) EXPLAIN 결과 / 인덱스 추가 전/후 Postman 속도 비교**
 >
 > <div align="center">
+>
+> 📸 **EXPLAIN 결과 / 인덱스 추가 전/후 Postman 속도 비교**
 >
 >| 쿼리 콘솔 - 인덱스 추가 | users 테이블 - 인덱스 적용 확인 |
 >|---|---|
