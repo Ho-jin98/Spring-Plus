@@ -57,7 +57,8 @@ public class UserService {
         }
     }
 
-/*     JPA (findByNickname)으로 속도 측정
+    /*JPA(findByNickname)으로 속도 측정
+
     public List<UserSearchResponse> searchNickname(String nickname) {
         return userRepository.findByNickname(nickname).stream()
                 // User -> UserSearchResponse DTO로 변환

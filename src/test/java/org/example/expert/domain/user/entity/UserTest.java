@@ -46,7 +46,6 @@ class UserTest {
             jdbcTemplate.batchUpdate(sql, batch);
         }
     }
-
 }
 /*
  batchUpdate() -> jdbcTemplate에서 제공하는 메서드

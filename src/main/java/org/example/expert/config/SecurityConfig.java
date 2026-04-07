@@ -35,7 +35,7 @@ public class SecurityConfig {
 
         /* csrf, httpBasic, formLogin 비활성화
          JwtFilter 를 UsernamePasswordAuthenticationFilter 앞에 등록
-         /auth*//** : 누구나 접근 가능 -> 회원가입, 로그인
+         /auth/** : 누구나 접근 가능 -> 회원가입, 로그인
          /admin/** : ADMIN 권한만 접근 가능*/
     }
 }
